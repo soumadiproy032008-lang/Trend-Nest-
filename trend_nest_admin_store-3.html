@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101010">
+<title>Trend Nest — Store & Admin</title>
+<style>
+:root{--black:#101010;--paper:#fff;--muted:#686868;--line:#e5e5e5;--soft:#f5f5f3;--green:#168a45;--gold:#d4b06a}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--black);background:#fff}button,input,select,textarea{font:inherit}button,a{cursor:pointer}
+header{background:var(--black);color:#fff;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}.brand{font-size:28px;font-weight:900;letter-spacing:-1px}.brand span{color:var(--gold)}.tagline{font-size:9px;letter-spacing:3px;color:#ccc;margin-top:3px}
+nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}nav button{border:1px solid #444;background:transparent;color:#fff;border-radius:8px;padding:10px 13px}nav button.active,nav button:hover{background:#fff;color:#111}
+.hero{background:linear-gradient(110deg,#151515,#343434 68%,#666);color:white;padding:48px 6%;display:grid;grid-template-columns:1fr .7fr;align-items:center;gap:25px}.eyebrow{font-size:11px;letter-spacing:4px;color:#ddd}.hero h1{font-size:clamp(38px,6vw,65px);line-height:1;margin:15px 0;letter-spacing:-2px}.hero p{line-height:1.6;color:#e4e4e4;max-width:480px}.hero-art{border:1px solid #666;border-radius:18px;min-height:190px;display:grid;place-items:center;background:radial-gradient(circle,#777,#242424 70%)}.shirt{width:135px;height:150px;background:#101010;clip-path:polygon(24% 4%,39% 0,45% 8%,55% 8%,61% 0,76% 4%,100% 26%,83% 44%,72% 33%,72% 100%,28% 100%,28% 33%,17% 44%,0 26%);position:relative;filter:drop-shadow(0 10px 10px #000)}.shirt:after{content:"TREND\\A NEST";white-space:pre;position:absolute;top:42%;left:0;right:0;text-align:center;color:#eee;font-weight:900;font-size:14px;line-height:1.1}
+main{max-width:1200px;margin:auto}.section{padding:30px 5%}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:20px;flex-wrap:wrap}.section h2{margin:0;font-size:26px}.sub{font-size:13px;color:var(--muted);margin-top:7px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.product{border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}.product img{width:100%;height:220px;object-fit:cover;background:#eee}.product-info{padding:13px;display:flex;flex-direction:column;gap:9px;flex:1}.product h3{font-size:15px;margin:0}.price{font-size:18px;font-weight:800}.muted{color:var(--muted);font-size:12px;line-height:1.5}.order{background:var(--green);color:#fff;text-decoration:none;border:0;border-radius:8px;padding:12px 8px;text-align:center;font-weight:700;font-size:13px;margin-top:auto}.empty{grid-column:1/-1;text-align:center;padding:45px 20px;border:1px dashed #ccc;border-radius:12px;color:#666}
+.benefits{margin:0 5% 30px;padding:18px;background:var(--soft);border-radius:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px;text-align:center;font-size:13px}.benefits strong{display:block;margin:5px}
+footer{background:#111;color:#ddd;text-align:center;padding:25px 15px;font-size:12px;line-height:1.8}
+.admin-wrap{padding:26px 5%;max-width:900px;margin:auto}.admin-title{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.panel{border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:18px}.panel h3{margin:0 0 15px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:700}.field input,.field select,.field textarea{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;background:white;color:#111}.field textarea{min-height:75px;resize:vertical}.btn{border:0;border-radius:8px;padding:11px 15px;font-weight:700}.primary{background:#111;color:#fff}.secondary{background:#eee;color:#111}.danger{background:#fee2e2;color:#991b1b}.green{background:var(--green);color:#fff}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.admin-list{display:grid;gap:10px}.admin-item{border:1px solid var(--line);padding:12px;border-radius:10px;display:flex;align-items:center;gap:12px}.admin-item img{width:58px;height:68px;object-fit:cover;border-radius:6px;background:#eee}.admin-item .grow{flex:1;min-width:0}.admin-item strong{display:block;overflow-wrap:anywhere}.hidden{display:none!important}.note{background:#fff7df;padding:12px;border-radius:8px;font-size:13px;line-height:1.5;color:#664d00}.login{max-width:420px;margin:35px auto;padding:24px;border:1px solid var(--line);border-radius:14px}.login h2{margin-top:0}.small{font-size:12px;color:var(--muted);line-height:1.5}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.product img{height:190px}.hero{grid-template-columns:1fr;padding:38px 6%}.hero-art{min-height:160px}.benefits{grid-template-columns:1fr}.section{padding:26px 4%}}
+@media(max-width:420px){header{padding:13px 4%}.brand{font-size:24px}nav{width:100%}nav button{flex:1;padding:9px 5px;font-size:12px}.grid{gap:8px}.product img{height:155px}.product-info{padding:9px}.product h3{font-size:13px}.price{font-size:16px}.order{font-size:12px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.admin-wrap{padding:20px 4%}}
+</style></head>
+<body>
+<header><div><div class="brand">Trend <span>Nest</span></div><div class="tagline">YOUR STYLE, YOUR NEST</div></div>
+<nav><button id="shopTab" class="active" type="button">Shop</button><button id="adminTab" type="button">Owner Admin</button></nav></header>
+<section class="hero" id="hero"><div><div class="eyebrow">YOUR STYLE. YOUR RULES.</div><h1>Find Your<br>Next Favourite.</h1><p>Everyday essentials and streetwear styles. Choose a T-shirt and order directly through WhatsApp.</p></div><div class="hero-art"><div class="shirt"></div></div></section>
+<main>
+<section id="shopView" class="section"><div class="section-head"><div><h2>Latest T-shirts</h2><div class="sub">Products curated by Trend Nest. Tap Order Now to message us.</div></div></div><div id="productGrid" class="grid"></div></section>
+<section id="adminView" class="hidden">
+<div id="loginView" class="login"><h2>Owner login</h2><p class="sub">Only the store owner should manage products.</p><form id="loginForm"><div class="field"><label for="pin">Admin password</label><input id="pin" type="password" autocomplete="current-password" placeholder="Enter admin password" required></div><div class="actions"><button class="btn primary" type="submit">Unlock admin</button></div></form><p class="small">First time? Use the temporary starter password <b>TrendNest@123</b>, then change it inside Admin settings.</p></div>
+<div id="adminDashboard" class="admin-wrap hidden"><div class="admin-title"><div><h2 style="margin:0">Owner dashboard</h2><div class="sub">Add, edit or remove products from this browser.</div></div><button id="logoutBtn" class="btn secondary">Lock admin</button></div>
+<div class="note" style="margin-top:16px"><b>Important:</b> This simple free version saves products in this browser only. It does not sync between devices and the starter password is not secure server-side authentication. Before using it for a public shop, configure a private owner account/backend. Do not store customer payment or sensitive data here.</div>
+<div class="panel"><h3 id="formTitle">Add a T-shirt</h3><form id="productForm"><input type="hidden" id="editId"><div class="form-grid">
+<div class="field"><label for="pname">Product name *</label><input id="pname" required maxlength="80" placeholder="e.g. Oversized Graphic Tee"></div>
+<div class="field"><label for="pprice">Price (₹) *</label><input id="pprice" required type="number" min="1" max="100000" step="1" placeholder="250"></div>
+<div class="field"><label for="pcolor">Colour</label><input id="pcolor" maxlength="40" placeholder="Black"></div>
+<div class="field"><label for="psizes">Sizes</label><input id="psizes" maxlength="100" placeholder="S, M, L, XL"></div>
+<div class="field full"><label for="pimageFile">Upload product photo</label><input id="pimageFile" type="file" accept="image/*"><div class="small">Choose a photo directly from your phone gallery. JPG, PNG or WebP works best. Maximum file size: 20 MB.</div><div id="imagePreviewWrap" class="hidden" style="margin-top:8px"><img id="imagePreview" alt="Selected product preview" style="max-width:150px;max-height:180px;object-fit:contain;border-radius:8px;border:1px solid #ddd"></div></div>
+<div class="field full"><label for="pimage">Or use an image URL (optional)</label><input id="pimage" type="url" placeholder="https://... (direct image link)"></div>
+<div class="field full"><label for="pdesc">Short description (optional)</label><textarea id="pdesc" maxlength="250" placeholder="Cotton fabric, relaxed fit..."></textarea></div>
+</div><div class="actions"><button class="btn primary" type="submit">Save product</button><button class="btn secondary" id="cancelEdit" type="button">Clear form</button></div></form></div>
+<div class="panel"><h3>WhatsApp order number</h3><div class="field"><label for="waNumber">Country code + number (digits only)</label><input id="waNumber" inputmode="numeric" placeholder="916291547313"></div><div class="actions"><button class="btn primary" id="saveWa" type="button">Save WhatsApp number</button></div></div>
+<div class="panel"><h3>Change admin password</h3><div class="field"><label for="newPass">New password (at least 8 characters)</label><input id="newPass" type="password" minlength="8" autocomplete="new-password"></div><div class="actions"><button class="btn secondary" id="changePass" type="button">Change password</button></div></div>
+<div class="panel"><div class="section-head"><h3 style="margin:0">Your products</h3><span id="productCount" class="sub"></span></div><div id="adminProducts" class="admin-list"></div></div>
+</div></section></main>
+<div class="benefits"><div>📲<strong>Easy WhatsApp Orders</strong>Talk directly to the shop</div><div>👕<strong>Owner-curated products</strong>Listings managed by Trend Nest</div><div>✨<strong>Fresh styles</strong>Find your everyday fit</div></div>
+<footer><b>Trend Nest</b><br>Products are listed by the store owner. Orders are confirmed on WhatsApp.<br>© <span id="year"></span> Trend Nest</footer>
+<script>
+const DEFAULT_WA = "916291547313";
+const STARTER_PASSWORD = "TrendNest@123";
+const KEYS = {products:"trendNestProductsV1", wa:"trendNestWhatsAppV1", pass:"trendNestAdminPassV1"};
+const seed = [
+{id:"seed1",name:"Classic Everyday Tee",price:250,color:"White",sizes:"S, M, L, XL",image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85",desc:"A versatile everyday T-shirt."},
+{id:"seed2",name:"Streetwear Graphic Tee",price:299,color:"Black",sizes:"S, M, L, XL",image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=700&q=85",desc:"A street-ready look."}
+];
+const $=id=>document.getElementById(id);
+let products = loadProducts(), waNumber = localStorage.getItem(KEYS.wa)||DEFAULT_WA, isAdmin=false;
+function loadProducts(){try{const raw=localStorage.getItem(KEYS.products);return raw?JSON.parse(raw):seed.slice()}catch{return seed.slice()}}
+function persistProducts(){localStorage.setItem(KEYS.products,JSON.stringify(products))}
+function escapeHTML(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderShop(){
+ const grid=$("productGrid");grid.innerHTML="";
+ if(!products.length){grid.innerHTML='<div class="empty">No T-shirts listed yet. Please check back soon.</div>';return}
+ products.forEach(p=>{
+  const msg=`Hi Trend Nest! I'd like to order:\\nProduct: ${p.name}\\nPrice: ₹${p.price}\\nColour: ${p.color||"Please confirm"}\\nSize: ${p.sizes||"Please confirm"}\\n${p.desc?"Details: "+p.desc+"\\n":""}Please confirm availability and delivery details.`;
+  const url=`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+  const card=document.createElement("article");card.className="product";
+  if(p.image){const img=document.createElement("img");img.src=p.image;img.alt=p.name;img.loading="lazy";img.onerror=()=>img.style.display="none";card.append(img)}
+  const info=document.createElement("div");info.className="product-info";
+  info.innerHTML=`<h3>${escapeHTML(p.name)}</h3><div class="price">₹${Number(p.price).toLocaleString("en-IN")}</div><div class="muted">Colour: ${escapeHTML(p.color||"Ask us")}<br>Sizes: ${escapeHTML(p.sizes||"Ask us")}${p.desc?"<br>"+escapeHTML(p.desc):""}</div><a class="order" href="${url}" target="_blank" rel="noopener">Order Now on WhatsApp ↗</a>`;
+  card.append(info);grid.append(card);
+ });
+}
+function renderAdminProducts(){
+ $("productCount").textContent=products.length+" product(s)";const list=$("adminProducts");list.innerHTML="";
+ if(!products.length){list.innerHTML='<p class="sub">No products yet. Add your first T-shirt above.</p>';return}
+ products.forEach(p=>{const row=document.createElement("div");row.className="admin-item";
+ row.innerHTML=`${p.image?`<img src="${escapeHTML(p.image)}" alt="">`:""}<div class="grow"><strong>${escapeHTML(p.name)}</strong><span class="muted">₹${Number(p.price).toLocaleString("en-IN")} · ${escapeHTML(p.color||"Colour not set")}</span></div><button class="btn secondary" data-edit="${escapeHTML(p.id)}">Edit</button><button class="btn danger" data-delete="${escapeHTML(p.id)}">Delete</button>`;
+ list.append(row)});
+ list.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editProduct(b.dataset.edit));
+ list.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.delete);if(p&&confirm(`Delete "${p.name}"?`)){products=products.filter(x=>x.id!==p.id);persistProducts();renderAll();clearForm()}});
+}
+function renderAll(){renderShop();renderAdminProducts()}
+function showTab(admin){$("shopView").classList.toggle("hidden",admin);$("hero").classList.toggle("hidden",admin);$("adminView").classList.toggle("hidden",!admin);$("shopTab").classList.toggle("active",!admin);$("adminTab").classList.toggle("active",admin);if(admin)updateAdminUI()}
+function updateAdminUI(){$("loginView").classList.toggle("hidden",isAdmin);$("adminDashboard").classList.toggle("hidden",!isAdmin);if(isAdmin){$("waNumber").value=waNumber;renderAdminProducts()}}
+$("shopTab").onclick=()=>showTab(false);$("adminTab").onclick=()=>showTab(true);
+$("loginForm").onsubmit=e=>{e.preventDefault();const saved=localStorage.getItem(KEYS.pass)||STARTER_PASSWORD;if($("pin").value===saved){isAdmin=true;$("pin").value="";updateAdminUI()}else alert("Password incorrect. Try again.")};
+$("logoutBtn").onclick=()=>{isAdmin=false;updateAdminUI()};
+let selectedImageData = "";
+$("pimageFile").addEventListener("change", e=>{
+ const file=e.target.files && e.target.files[0];
+ if(!file){selectedImageData="";$("imagePreviewWrap").classList.add("hidden");return;}
+ if(!file.type.startsWith("image/")){alert("Please choose an image file.");e.target.value="";return;}
+ if(file.size>20*1024*1024){alert("Please choose a photo smaller than 20 MB.");e.target.value="";return;}
+ const reader=new FileReader();
+ reader.onload=()=>{selectedImageData=String(reader.result||"");$("imagePreview").src=selectedImageData;$("imagePreviewWrap").classList.remove("hidden");};
+ reader.readAsDataURL(file);
+});
+function clearForm(){$("productForm").reset();$("editId").value="";selectedImageData="";$("imagePreviewWrap").classList.add("hidden");$("imagePreview").removeAttribute("src");$("formTitle").textContent="Add a T-shirt"}
+function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;$("editId").value=p.id;$("pname").value=p.name;$("pprice").value=p.price;$("pcolor").value=p.color||"";$("psizes").value=p.sizes||"";$("pimage").value=(p.image||"").startsWith("data:")?"":(p.image||"");selectedImageData=(p.image||"").startsWith("data:")?(p.image||""):"";if(selectedImageData){$("imagePreview").src=selectedImageData;$("imagePreviewWrap").classList.remove("hidden")}else{$("imagePreviewWrap").classList.add("hidden")};$("pdesc").value=p.desc||"";$("formTitle").textContent="Edit T-shirt";$("pname").focus();window.scrollTo({top:0,behavior:"smooth"})}
+$("cancelEdit").onclick=clearForm;
+$("productForm").onsubmit=e=>{e.preventDefault();if(!isAdmin)return;const id=$("editId").value||("p"+Date.now());const item={id,name:$("pname").value.trim(),price:Number($("pprice").value),color:$("pcolor").value.trim(),sizes:$("psizes").value.trim(),image:selectedImageData||$("pimage").value.trim(),desc:$("pdesc").value.trim()};if(!item.name||!Number.isFinite(item.price)||item.price<1)return alert("Please enter a product name and valid price.");const idx=products.findIndex(p=>p.id===id);if(idx>=0)products[idx]=item;else products.unshift(item);persistProducts();renderAll();clearForm();alert("Product saved in this browser.")};
+$("saveWa").onclick=()=>{const n=$("waNumber").value.replace(/\D/g,"");if(n.length<10||n.length>15)return alert("Enter a valid country code and phone number.");waNumber=n;localStorage.setItem(KEYS.wa,n);renderShop();alert("WhatsApp number saved.")};
+$("changePass").onclick=()=>{const p=$("newPass").value;if(p.length<8)return alert("Use at least 8 characters.");localStorage.setItem(KEYS.pass,p);$("newPass").value="";alert("Password changed on this browser.")};
+$("year").textContent=new Date().getFullYear();renderAll();
+</script></body></html>
